@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="MyProject" default="build" basedir=".">
+  <property name="src.dir" value="src"/>
+  <property name="build.dir" value="build"/>
+  <property name="dist.dir" value="dist"/>
+
+  <target name="clean">
+    <delete dir="${build.dir}"/>
+    <delete dir="${dist.dir}"/>
+  </target>
+
+  <target name="build" depends="clean">
+    <mkdir dir="${build.dir}"/>
+    <javac srcdir="${src.dir}" destdir="${build.dir}"/>
+  </target>
+
+  <target name="package" depends="build">
+    <mkdir dir="${dist.dir}"/>
+    <war destfile="${dist.dir}/MyProject.war" webxml="WebContent/WEB-INF/web.xml">
+      <fileset dir="WebContent"/>
+      <classes dir="${build.dir}"/>
+    </war>
+  </target>
+</project>
