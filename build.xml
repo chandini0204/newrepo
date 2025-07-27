@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="MyProject" default="package" basedir=".">
+<project name="antproject" default="package" basedir=".">
   <property name="src.dir" value="src"/>
   <property name="build.dir" value="build"/>
   <property name="dist.dir" value="dist"/>
@@ -16,7 +16,7 @@
 
   <target name="package" depends="build">
     <mkdir dir="${dist.dir}"/>
-    <war destfile="${dist.dir}/MyProject.war" webxml="WebContent/WEB-INF/web.xml">
+    <war destfile="${dist.dir}/antproject.war" webxml="WebContent/WEB-INF/web.xml">
       <fileset dir="WebContent"/>
       <classes dir="${build.dir}"/>
     </war>
