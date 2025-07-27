@@ -5,20 +5,29 @@
   <property name="dist.dir" value="dist"/>
 
   <target name="clean">
+    <echo message="Cleaning build directory..."/>
     <delete dir="${build.dir}"/>
     <delete dir="${dist.dir}"/>
   </target>
 
   <target name="build" depends="clean">
+    <echo message="Building project..."/>
     <mkdir dir="${build.dir}"/>
     <javac srcdir="${src.dir}" destdir="${build.dir}"/>
+    <echo message="Build directory: ${build.dir}"/>
+    <echo message="Files in build directory: $(ls -l ${build.dir})"/>
   </target>
 
   <target name="package" depends="build">
+    <echo message="Packaging WAR file..."/>
     <mkdir dir="${dist.dir}"/>
+    <echo message="Dist directory: ${dist.dir}"/>
     <war destfile="${dist.dir}/antproject.war" webxml="WebContent/WEB-INF/web.xml">
       <fileset dir="WebContent"/>
       <classes dir="${build.dir}"/>
     </war>
+    <echo message="WAR file generated successfully!"/>
+    <echo message="Files in dist directory: $(ls -l ${dist.dir})"/>
   </target>
 </project>
+
